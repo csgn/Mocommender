@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS Country (
+     id 		VARCHAR(2) 		NOT NULL
+    ,name 	VARCHAR(128) 	NOT NULL
+
+    ,PRIMARY KEY (id)
+);
