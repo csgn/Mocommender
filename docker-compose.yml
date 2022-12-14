@@ -48,6 +48,7 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
       - KAFKA_APP_TOPIC=mocommender_topic
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     ports:
       - "8080:8080"
     volumes:
@@ -89,7 +90,7 @@ services:
       - ./postgres/schemas/15_metadata_country.sql:/docker-entrypoint-initdb.d/15_metadata_country.sql:z
       - ./postgres/schemas/16_metadata_company.sql:/docker-entrypoint-initdb.d/16_metadata_company.sql:z
       - ./postgres/schemas/17_user.sql:/docker-entrypoint-initdb.d/17_user.sql:z
-      - ./postgres/schemas/18_user_movie.sql.sql:/docker-entrypoint-initdb.d/17_user_movie.sql:z
+      - ./postgres/schemas/18_user_movie.sql:/docker-entrypoint-initdb.d/17_user_movie.sql:z
 
 networks:
   app-tier:

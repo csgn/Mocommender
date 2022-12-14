@@ -1,4 +1,4 @@
-docker exec -it mocommender_kafka_1 kafka-topics.sh \
+docker exec -it kafka kafka-topics.sh \
 	--create \
 	--topic mocommender_topic \
 	--replication-factor 1 \
