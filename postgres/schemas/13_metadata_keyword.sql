@@ -1,14 +1,14 @@
-CREATE TABLE IF NOT EXISTS Metadata_Keyword (
+CREATE TABLE IF NOT EXISTS MCMetadataKeyword (
      metadata_id 	INTEGER 	NOT NULL
     ,keyword_id 	INTEGER 	NOT NULL
 
     ,CONSTRAINT fk_ref_metadata
     	FOREIGN KEY (metadata_id)
-    		REFERENCES Metadata (id)
+    		REFERENCES MCMetadata (id)
 
     ,CONSTRAINT fk_ref_genre
     	FOREIGN KEY (Keyword_id)
-    		REFERENCES Keyword (id)
+    		REFERENCES MCKeyword (id)
 
     ,PRIMARY KEY (metadata_id, keyword_id)
 );

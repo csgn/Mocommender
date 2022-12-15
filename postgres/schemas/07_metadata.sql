@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Metadata (
+CREATE TABLE IF NOT EXISTS MCMetadata (
      id 					INTEGER 				NOT NULL
 	 ,imdb_id 			VARCHAR(9) 			NOT NULL
 	 ,title 				VARCHAR(255) 		NOT NULL

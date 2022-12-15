@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS User_Movie (
+CREATE TABLE IF NOT EXISTS MCUserMovie (
 	 user_id					INTEGER			NOT NULL
 	,movie_id				INTEGER			NOT NULL
 	,is_played				BOOLEAN			NOT NULL
@@ -16,13 +16,13 @@ CREATE TABLE IF NOT EXISTS User_Movie (
 
 	,CONSTRAINT fk_ref_user
 		FOREIGN KEY (user_id)
-			REFERENCES User (id)
+			REFERENCES MCUser (id)
 				ON UPDATE CASCADE
 				ON DELETE CASCADE
 
 	,CONSTRAINT fk_ref_movie
 		FOREIGN KEY (movie_id)
-			REFERENCES Metadata (id)
+			REFERENCES MCMetadata (id)
 				ON UPDATE CASCADE
 				ON DELETE CASCADE
 	

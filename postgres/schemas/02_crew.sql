@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Crew (
+CREATE TABLE IF NOT EXISTS MCCrew (
      id 					VARCHAR(24) 		NOT NULL
 	 ,employee_id		INTEGER 				NOT NULL
     ,department 		VARCHAR(512) 		NOT NULL
