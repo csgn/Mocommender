@@ -12,9 +12,11 @@ class McMetadata(models.Model):
     runtime = models.FloatField()
     vote_average = models.FloatField()
     vote_count = models.IntegerField()
+    poster_path = models.CharField(max_length=127, blank=True, null=True)
 
     genre = models.ManyToManyField('McGenre', through='McMetadataGenre')
     cast = models.ManyToManyField('McCast', through='McMetadataCast')
+    crew = models.ManyToManyField('McCrew', through='McMetadataCrew')
 
     def __str__(self):
         return self.title

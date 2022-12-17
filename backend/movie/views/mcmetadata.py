@@ -1,12 +1,11 @@
 # VIEW
 
-from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
-from user.models import McUser, McUserMovie
-from user.serializers import McUserSerializer
+from movie.models import McMetadata
+from movie.serializers import McMetadataSerializer
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -15,15 +14,20 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
 
-class McUserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = McUser.objects.all()
-    serializer_class = McUserSerializer
+class McMetadataViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = McMetadata.objects.all()
+    serializer_class = McMetadataSerializer
     pagination_class = StandardResultsSetPagination
 
 
     def list(self, request, *args, **kwargs):
-        print("HELLO", request.data, args, kwargs)
+        params_ids = request.query_params.get('ids')
         queryset = self.filter_queryset(self.get_queryset())
+
+        if params_ids:
+            queryset = queryset.filter(pk__in=params_ids.split(','))
+
+
         page = self.paginate_queryset(queryset)
 
         if page is not None:

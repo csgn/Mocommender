@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS MCUserMovie (
-	 user_id					INTEGER			NOT NULL
+	 id						SERIAL			NOT NULL
+	,user_id					INTEGER			NOT NULL
 	,movie_id				INTEGER			NOT NULL
 	,is_played				BOOLEAN			NOT NULL
 													DEFAULT FALSE
@@ -26,5 +27,5 @@ CREATE TABLE IF NOT EXISTS MCUserMovie (
 				ON UPDATE CASCADE
 				ON DELETE CASCADE
 	
-	,PRIMARY KEY (user_id, movie_id)
+	,PRIMARY KEY (id)
 );

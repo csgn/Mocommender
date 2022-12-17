@@ -1,12 +1,11 @@
 # VIEW
 
-from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 
-from user.models import McUser, McUserMovie
-from user.serializers import McUserSerializer
+from movie.models import McCrew
+from movie.serializers import McCrewSerializer
 
 
 class StandardResultsSetPagination(PageNumberPagination):
@@ -15,14 +14,13 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 1000
 
 
-class McUserViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = McUser.objects.all()
-    serializer_class = McUserSerializer
+class McCrewViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = McCrew.objects.all()
+    serializer_class = McCrewSerializer
     pagination_class = StandardResultsSetPagination
 
 
     def list(self, request, *args, **kwargs):
-        print("HELLO", request.data, args, kwargs)
         queryset = self.filter_queryset(self.get_queryset())
         page = self.paginate_queryset(queryset)
 

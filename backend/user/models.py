@@ -11,11 +11,11 @@ from django.db import models
 from movie.models.mcmetadata.mcmetadata import McMetadata
 
 
-class Mcuser(models.Model):
+class McUser(models.Model):
     username = models.CharField(max_length=32)
     is_active = models.BooleanField()
 
-    movie = models.ManyToManyField(McMetadata, through='Mcusermovie')
+    user_movie = models.ManyToManyField(McMetadata, through='McUserMovie')
 
     def __str__(self):
         return self.username
@@ -25,9 +25,9 @@ class Mcuser(models.Model):
         db_table = 'mcuser'
 
 
-class Mcusermovie(models.Model):
-    user = models.ForeignKey('Mcuser', on_delete=models.CASCADE)
-    movie = models.ForeignKey(McMetadata, on_delete=models.CASCADE)
+class McUserMovie(models.Model):
+    user = models.ForeignKey(McUser, on_delete=models.CASCADE, db_column="user_id")
+    movie = models.ForeignKey(McMetadata, on_delete=models.CASCADE, db_column="movie_id")
     is_played = models.BooleanField()
     is_recommended = models.BooleanField()
     is_liked = models.BooleanField()
@@ -39,10 +39,9 @@ class Mcusermovie(models.Model):
     class Meta:
         managed = False
         db_table = 'mcusermovie'
-        unique_together = (('user', 'movie'),)
 
 
 
-@admin.register(Mcuser)
-class McuserAdmin(admin.ModelAdmin):
+@admin.register(McUser)
+class McUserAdmin(admin.ModelAdmin):
     pass
