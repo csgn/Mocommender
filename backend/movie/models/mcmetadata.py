@@ -1,12 +1,10 @@
-from django.contrib import admin
 from django.db import models
 
 
 class McMetadata(models.Model):
-    id = models.IntegerField(primary_key=True)
     imdb_id = models.CharField(max_length=9)
     title = models.CharField(max_length=255)
-    overview = models.CharField(max_length=255, blank=True, null=True)
+    overview = models.CharField(max_length=512, blank=True, null=True)
     popularity = models.FloatField()
     release_date = models.DateField()
     runtime = models.FloatField()
@@ -15,18 +13,17 @@ class McMetadata(models.Model):
     poster_path = models.CharField(max_length=127, blank=True, null=True)
 
     genre = models.ManyToManyField('McGenre', through='McMetadataGenre')
-    cast = models.ManyToManyField('McCast', through='McMetadataCast')
-    crew = models.ManyToManyField('McCrew', through='McMetadataCrew')
-
-    def __str__(self):
-        return self.title
 
     class Meta:
-        managed=False
+        managed = False
         db_table = 'mcmetadata'
 
 
+class McMetadataGenre(models.Model):
+    metadata = models.ForeignKey('McMetadata', on_delete=models.CASCADE)
+    genre = models.ForeignKey('McGenre', on_delete=models.CASCADE)
 
-@admin.register(McMetadata)
-class McMetadataAdmin(admin.ModelAdmin):
-    pass
+    class Meta:
+        managed = False
+        db_table = 'mcmetadatagenre'
+        unique_together = (('metadata', 'genre'))

@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'movie.apps.MovieConfig',
-    'user.apps.UserConfig',
-
 ]
 
 MIDDLEWARE = [

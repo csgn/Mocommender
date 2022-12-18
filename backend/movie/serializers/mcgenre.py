@@ -1,10 +1,10 @@
-# SERIALIZER
-
 from rest_framework import serializers
 
-from movie.models import McGenre
+from movie.models.mcgenre import McGenre
 
-class McGenreSerializer(serializers.HyperlinkedModelSerializer):
+
+class McGenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = McGenre
         fields = ['id', 'name']
+

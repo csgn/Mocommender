@@ -17,31 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from movie.views import (
-    McGenreViewSet,
-    McCountryViewSet,
-    McCastViewSet,
-    McCompanyViewSet,
-    McCrewViewSet,
-    McLanguageViewSet,
-    McMetadataViewSet,
-)
-
-from user.views import McUserViewSet
-
 router = routers.DefaultRouter()
-router.register(r'genres', McGenreViewSet, basename="mcgenre")
-router.register(r'countries', McCountryViewSet, basename="mccountry")
-router.register(r'cast', McCastViewSet, basename="mccast")
-router.register(r'companies', McCompanyViewSet, basename="mccompany")
-router.register(r'crew', McCrewViewSet, basename="mccrew")
-router.register(r'languages', McLanguageViewSet, basename="mclanguage")
-router.register(r'metadatas', McMetadataViewSet, basename="mcmetadatas")
-router.register(r'user', McUserViewSet, basename="mcuser")
+
 
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('movies/', include('movie.urls.mcmetadata')),
+    path('genres/', include('movie.urls.mcgenre')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
 ]

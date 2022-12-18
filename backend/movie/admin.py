@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from movie.models.mcgenre import McGenre
+
+
+admin.site.register(McGenre)
