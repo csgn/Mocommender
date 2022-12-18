@@ -15,18 +15,6 @@ export default function MovieList({ ids }) {
     t: false,
   });
 
-  const getMovieDetails = async () => {
-    await axios
-      .get(`http://localhost:8000/metadatas/?ids=${ids.join(",")}`)
-      .then((res) => {
-        setMovies(res.data.results);
-        setLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    getMovieDetails();
-  }, []);
 
   if (loading) return <Spinner />;
 

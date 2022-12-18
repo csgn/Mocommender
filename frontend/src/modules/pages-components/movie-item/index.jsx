@@ -22,6 +22,9 @@ export default function MovieItem({ el, setSelected, setToggle }) {
           backdropPath: res.data.backdrop_path,
         });
         setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
       });
   };
 
@@ -36,26 +39,32 @@ export default function MovieItem({ el, setSelected, setToggle }) {
       console.log("disliked");
     },
     handleInfo: (e) => {
-      setSelected({
-        ...el,
-        backdropPath: images.backdropPath,
-      });
-      setToggle({
-        t: true,
-        e: e,
-      });
+      setSelected &&
+        setSelected({
+          ...el,
+          backdropPath: images.backdropPath,
+        });
+      setToggle &&
+        setToggle({
+          t: true,
+          e: e,
+        });
     },
   };
 
   useEffect(() => {
     getPosterPath();
-  }, []);
+  }, [el]);
 
   if (loading) return <Spinner />;
 
   return (
     <CardItem
-      src={`https://image.tmdb.org/t/p/original${images.posterPath}`}
+      src={
+        images.posterPath
+          ? `https://image.tmdb.org/t/p/original${images.posterPath}`
+          : "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png"
+      }
       cbs={cbs}
     />
   );

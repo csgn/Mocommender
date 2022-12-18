@@ -11,11 +11,6 @@ export default [
   },
   {
     id: 2,
-    text: "Popular",
-    href: "/latest",
-  },
-  {
-    id: 3,
     text: "Recommended for You",
     href: "/recommended",
   },

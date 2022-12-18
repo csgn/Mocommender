@@ -1,10 +1,10 @@
 export default function Spinner({ text }) {
   return (
     <>
-      <div>
+      <div className="flex justify-center items-center w-full h-full">
         <svg
           aria-hidden="true"
-          className="mr-2 w-3 h-3 text-gray-200 animate-spin dark:text-[#333] fill-violet-600"
+          className="mr-2 w-16 h-16 text-gray-200 animate-spin dark:text-[#333] fill-red-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

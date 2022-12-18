@@ -7,7 +7,7 @@ export default function CardItem({ src, cbs }) {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="w-full sm:w-1/2 md:w-1/4 xl:w-1/6 p-3">
+    <div className="w-full h-full sm:w-1/2 md:w-1/4 xl:w-1/4 p-3">
       <div
         className="relative hover:cursor-pointer group hover:scale-105 hover:ease-in transition duration-150"
         onPointerEnter={() => setShowContent(true)}

@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import routes from "../../../../static/routes";
+import { FaSearch } from "react-icons/fa";
+import Search from "../../global/search";
 
 export default function Header() {
   const router = useRouter();
@@ -54,7 +56,7 @@ export default function Header() {
           </ul>
         </div>
         <div className="flex">
-          <div>Sign Out</div>
+          <Search />
         </div>
       </header>
     </>
