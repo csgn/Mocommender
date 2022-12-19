@@ -28,9 +28,23 @@ export default function MovieItem({ el, setSelected, setToggle }) {
       });
   };
 
+  const getMovieDetail = async () => {
+    await axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/user/movie/${mid}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const cbs = {
-    handlePlay: () => {
-      console.log("played");
+    handleFocus: async () => {
+      //getMovieDetail()
+    },
+    handlePlay: async () => {
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/`);
     },
     handleLike: () => {
       console.log("liked");
@@ -60,6 +74,7 @@ export default function MovieItem({ el, setSelected, setToggle }) {
 
   return (
     <CardItem
+      mid={el.id}
       src={
         images.posterPath
           ? `https://image.tmdb.org/t/p/original${images.posterPath}`

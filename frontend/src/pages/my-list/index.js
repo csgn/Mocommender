@@ -1,18 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { CardGrid } from "../../modules/components/card";
 import Spinner from "../../modules/components/global/spinner";
-import MovieList from "../../modules/pages-components/movie-list";
+import MovieItem from "../../modules/pages-components/movie-item";
+import MovieItemModal from "../../modules/pages-components/movie-item-modal";
+
+import { MdLocalMovies } from "react-icons/md";
+import Link from "next/link";
 
 export default function MyList() {
-  const [user, setUser] = useState([]);
+  const [userMovieList, setUserMovieList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selected, setSelected] = useState({});
+  const [toggle, setToggle] = useState(false);
 
-  const getUser = async () => {
-    setLoading(true);
+  const getUserMovieList = async () => {
     await axios
-      .get(`http://127.0.0.1:8000/user/1/`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/users/1/movies/`)
       .then((res) => {
-        setUser(res.data);
+        setUserMovieList(res.data.map((_) => _.movie));
         setLoading(false);
       })
       .catch((err) => {
@@ -21,14 +27,43 @@ export default function MyList() {
   };
 
   useEffect(() => {
-    getUser();
+    getUserMovieList();
   }, []);
 
   if (loading) return <Spinner />;
 
   return (
     <>
-      <MovieList ids={user.user_movie} />
+      <div className="w-full">
+        {userMovieList.length > 0 ? (
+          <CardGrid>
+            {userMovieList.map((el) => (
+              <MovieItem
+                el={el}
+                setSelected={setSelected}
+                setToggle={setToggle}
+              />
+            ))}
+          </CardGrid>
+        ) : (
+          <div className="flex p-10 items-center justify-center text-white w-full flex-col">
+            <MdLocalMovies size={128} color="#333" />
+            <span className="text-gray-500">
+              You haven't added any movies to your list yet
+            </span>
+            &nbsp;
+            <Link href="/" className="text-red-500 underline">
+              Explore Trends
+            </Link>
+          </div>
+        )}
+      </div>
+      <MovieItemModal
+        toggle={toggle}
+        setToggle={setToggle}
+        data={selected}
+        setData={setSelected}
+      />
     </>
   );
 }

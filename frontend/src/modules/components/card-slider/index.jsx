@@ -59,7 +59,7 @@ export default function CardSlider({ genre }) {
             />
           ))}
           <div
-            className="h-100 flex transition justify-center items-center opacity-10 hover:bg-[#ffffff55] duration-300 hover:opacity-50 rounded-md p-10 mr-5 cursor-pointer"
+            className="h-100 flex transition justify-center items-center opacity-10 hover:bg-[#ffffff55] duration-300 hover:opacity-50 rounded-md p-10 mr-5 mr-auto cursor-pointer"
             onClick={getMoviesAll}
           >
             <AiOutlineDoubleRight size="48" color="#fff" />

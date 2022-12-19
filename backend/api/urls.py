@@ -23,6 +23,7 @@ router = routers.DefaultRouter()
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('users/', include('user.urls.mcuser')),
     path('movies/', include('movie.urls.mcmetadata')),
     path('genres/', include('movie.urls.mcgenre')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),

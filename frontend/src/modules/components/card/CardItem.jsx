@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { AiFillLike, AiFillDislike, AiFillInfoCircle } from "react-icons/ai";
 
-export default function CardItem({ src, cbs }) {
+import axios from "axios";
+
+export default function CardItem({ mid, src, cbs }) {
   const [showContent, setShowContent] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  let hoverTimeout = null;
+
+  useEffect(() => {
+    if (showContent) {
+      cbs.handleFocus();
+    }
+  }, [showContent]);
 
   return (
     <div className="w-full h-full sm:w-1/2 md:w-1/4 xl:w-1/4 p-3">
       <div
-        className="relative hover:cursor-pointer group hover:scale-105 hover:ease-in transition duration-150"
-        onPointerEnter={() => setShowContent(true)}
-        onPointerLeave={() => setShowContent(false)}
+        className="relative hover:cursor-pointer group hover:scale-105 hover:ease-in transition duration-250"
+        onPointerEnter={() => {
+          hoverTimeout = setTimeout(() => {
+            setShowContent(true);
+          }, [240]);
+        }}
+        onPointerLeave={() => {
+          clearTimeout(hoverTimeout);
+          setShowContent(false);
+        }}
       >
         <img
           className={`h-full w-full object-cover rounded-lg ${

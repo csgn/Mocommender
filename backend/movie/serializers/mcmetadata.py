@@ -2,7 +2,6 @@ from rest_framework import serializers
 
 from movie.models.mcmetadata import McMetadata
 
-
 class McMetadataSerializer(serializers.ModelSerializer):
     genre = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 

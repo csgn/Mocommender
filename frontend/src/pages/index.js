@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex flex-col gap-5 pl-10 mt-5">
+      <div className="flex flex-col gap-5 pl-10 mt-5 w-full">
         {genres.slice(0, 3).map((genre) => (
           <CardSlider genre={genre} />
         ))}
