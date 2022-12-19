@@ -43,6 +43,5 @@ class McUserMovieRetrieveAPIView(McUserMovieScaffoldAPIView, RetrieveAPIView):
 
         return Response(serializer.data)
     
-
 list_user_movie_api_view = McUserMovieListAPIView.as_view()
 retrieve_user_movie_api_view = McUserMovieRetrieveAPIView.as_view()

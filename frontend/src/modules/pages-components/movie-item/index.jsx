@@ -44,7 +44,14 @@ export default function MovieItem({ el, setSelected, setToggle }) {
       //getMovieDetail()
     },
     handlePlay: async () => {
-      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/`);
+      await axios
+        .post(`http://127.0.0.1:5000/send`, {
+          user_id: 1,
+          movie_id: el.id,
+        })
+        .then((res) => {
+          console.log(res);
+        });
     },
     handleLike: () => {
       console.log("liked");
