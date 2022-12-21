@@ -41,7 +41,7 @@ services:
     hostname: spark
     user: root
     working_dir: /home
-    command: "spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0 bootstrap.py"
+    command: "./run.sh"
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_AUTHENTICATION_ENABLED=no

@@ -9,7 +9,6 @@ import Spinner from "../../modules/components/global/spinner";
 import MovieItem from "../../modules/pages-components/movie-item";
 
 import { CardGrid } from "../../modules/components/card";
-import CardModal from "../../modules/components/card-modal";
 import MovieItemModal from "../../modules/pages-components/movie-item-modal";
 
 export default function Search() {

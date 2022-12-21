@@ -52,6 +52,13 @@ export default function MovieItem({ el, setSelected, setToggle }) {
         .then((res) => {
           console.log(res);
         });
+
+      await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/users/1/movies/${el.id}`,
+        {
+          is_played: true,
+        }
+      );
     },
     handleLike: () => {
       console.log("liked");

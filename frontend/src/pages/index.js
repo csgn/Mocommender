@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import CardModal from "../modules/components/card-modal";
-import CardSlider from "../modules/components/card-slider";
-import MovieList from "../modules/pages-components/movie-list";
+import MovieSlider from "../modules/pages-components/movie-slider";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +33,7 @@ export default function Home() {
     <>
       <div className="flex flex-col gap-5 pl-10 mt-5 w-full">
         {genres.slice(0, 3).map((genre) => (
-          <CardSlider genre={genre} />
+          <MovieSlider genre={genre} />
         ))}
       </div>
     </>

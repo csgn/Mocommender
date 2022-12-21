@@ -18,7 +18,6 @@ export default function Spinner({ text }) {
             fill="currentFill"
           />
         </svg>
-        <span class="sr-only">Loading...</span>
       </div>
     </>
   );
